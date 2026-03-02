@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anti-anti — agentic shield</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6B1A;
+    --orange-dim: #cc4f08;
+    --bg: #080808;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --text: #e8e8e8;
+    --text-dim: #888;
+    --border: #222;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--orange), transparent);
+  }
+
+  .logo-wrap {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 3rem;
+  }
+
+  .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--orange);
+    border-right-color: var(--orange-dim);
+    animation: spin 3s linear infinite;
+  }
+
+  .ring-inner {
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1px solid #222;
+    border-bottom-color: var(--orange);
+    animation: spin 5s linear infinite reverse;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .logo-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .logo-a2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .hero-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 12vw, 9rem);
+    letter-spacing: 0.02em;
+    line-height: 0.9;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #aaa;
+    margin-bottom: 3rem;
+  }
+
+  .hero-desc strong {
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  .status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  /* ── SHARED ── */
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── THREATS ── */
+  .threats {
+    padding: 8rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .threats-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .threats-headline span { color: var(--orange); }
+
+  .threats-intro {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #777;
+    max-width: 580px;
+    margin-bottom: 4rem;
+  }
+
+  .threat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .threat-card {
+    background: var(--surface);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .threat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, var(--orange), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+    transform-origin: left;
+  }
+
+  .threat-card:hover::after { transform: scaleX(1); }
+  .threat-card:hover { background: var(--surface2); }
+
+  .threat-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+  }
+
+  .threat-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.8rem;
+    color: var(--text);
+  }
+
+  .threat-body {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── PILLARS ── */
+  .pillars-section {
+    padding: 8rem 2rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pillars-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pillars-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .pillars-headline span { color: var(--orange); }
+
+  .pillars-intro {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #777;
+    max-width: 580px;
+    margin-bottom: 4rem;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .pillar {
+    background: var(--surface2);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .pillar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .pillar:hover::before { transform: scaleX(1); }
+  .pillar:hover { background: #1f1f1f; }
+
+  .pillar-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+  }
+
+  .pillar-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.8rem;
+    color: var(--text);
+  }
+
+  .pillar-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── ORIGIN ── */
+  .origin {
+    padding: 8rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .origin h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .origin h2 span { color: var(--orange); }
+
+  .origin p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #777;
+    max-width: 620px;
+    margin-bottom: 1rem;
+  }
+
+  /* ── MANIFESTO ── */
+  .manifesto {
+    padding: 10rem 2rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .manifesto-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .manifesto blockquote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+  }
+
+  .manifesto blockquote span { color: var(--orange); }
+
+  .manifesto p {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+  .delay-3 { animation-delay: 0.6s; }
+  .delay-4 { animation-delay: 0.8s; }
+
+  @media (max-width: 640px) {
+    .threat-grid, .pillars-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo-wrap fade-in">
+    <div class="ring"></div>
+    <div class="ring-inner"></div>
+    <div class="logo-center">
+      <div class="logo-a2">A2</div>
+    </div>
+  </div>
+
+  <p class="hero-label fade-in delay-1">agentic shield</p>
+  <h1 class="hero-title fade-in delay-2">anti-anti</h1>
+  <p class="hero-sub fade-in delay-2">a fortress for intellectual property</p>
+
+  <p class="hero-desc fade-in delay-3">
+    AI should never be able to <strong>steal, scrape, or erase</strong>
+    what an artist builds. anti-anti is a local-first sovereign platform
+    that keeps your work yours — permanently.
+  </p>
+
+  <div class="status-bar fade-in delay-4">
+    <div class="status-dot"></div>
+    sovereign shield active — v0.8
+  </div>
+</section>
+
+<!-- THREATS -->
+<section class="threats">
+  <div class="section-label">the problem</div>
+  <h2 class="threats-headline">what artists are<br><span>up against</span></h2>
+  <p class="threats-intro">
+    Three real threats that every creator faces in the AI era —
+    and almost no tool is built to defend against them.
+  </p>
+
+  <div class="threat-grid">
+    <div class="threat-card">
+      <div class="threat-num">THREAT 01</div>
+      <div class="threat-title">Unwanted Training & Scraping</div>
+      <div class="threat-body">Models are trained on copyrighted work without consent. Your catalog, your lyrics, your sound — silently consumed as fuel for someone else's system. U.S. copyright guidance now flags this as potentially infringing. It keeps happening anyway.</div>
+    </div>
+    <div class="threat-card">
+      <div class="threat-num">THREAT 02</div>
+      <div class="threat-title">Look-Alike Outputs</div>
+      <div class="threat-body">When AI outputs mirror training data too closely, they compete with and dilute the original work's market. Style, voice, and sound are assets. Without protection, they become commons.</div>
+    </div>
+    <div class="threat-card">
+      <div class="threat-num">THREAT 03</div>
+      <div class="threat-title">No Provenance Trail</div>
+      <div class="threat-body">Once art is copied and reshared, proving origin becomes nearly impossible. Without a private signed record, you are arguing from memory against systems that never forget.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars-section">
+  <div class="pillars-inner">
+    <div class="section-label">the answer</div>
+    <h2 class="pillars-headline">three pillars.<br><span>one fortress.</span></h2>
+    <p class="pillars-intro">
+      anti-anti is built around the three things every artist needs
+      in the AI era — a sovereign place, a controlled gate, and an unbreakable record.
+    </p>
+
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-num">PILLAR 01</div>
+        <div class="pillar-name">Sovereign Archive</div>
+        <div class="pillar-desc">Masters, stems, lyrics, and artwork live locally — snapshotted and versioned on your own hardware. No external AI or cloud platform can touch, delete, or train on them without your explicit approval. Ever.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">PILLAR 02</div>
+        <div class="pillar-name">Front-Door Policy Engine</div>
+        <div class="pillar-desc">Anything leaving the system — lyrics for analysis, reference audio, cover art — passes through antiforge first. It tags, watermarks, or strips sensitive pieces according to rules you set. Nothing exits unguarded.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">PILLAR 03</div>
+        <div class="pillar-name">Provenance Logger</div>
+        <div class="pillar-desc">Every export and share writes a signed log entry: time, destination, what was sent. A private paper trail that belongs only to you — built before you ever need it, ready if you ever do.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGIN -->
+<section class="origin">
+  <div class="section-label">origin</div>
+  <h2>built from <span>the ashes</span></h2>
+  <p>A third-party AI builder updated silently and wiped the project file for Lyrical — a full creative suite months in the making. No warning. No backup. No recourse.</p>
+  <p>The work survived. The tool was gone. anti-anti is the answer — built by one artist, with no coding background, because the fortress that should have existed didn't.</p>
+  <p>This is the proof of concept. If it protects one catalog, it can protect any catalog.</p>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <div class="section-label" style="justify-content:center;">manifesto</div>
+    <blockquote>
+      "the idea is the hard part.<br>
+      the <span>code</span> is just the expression."
+    </blockquote>
+    <p>You don&#x2019;t have to solve the whole legal mess yourself. You just need your work to live somewhere AI can&#x2019;t silently eat, copy, or overwrite it. That is already real value. That is what anti-anti is.</p>
+    <p>Built local. Built sovereign. Built to last.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">anti-anti</div>
+  <div class="footer-note">agentic shield — sovereign fortress — v0.8 — 2026</div>
+</footer>
+
+</body>
+</html>

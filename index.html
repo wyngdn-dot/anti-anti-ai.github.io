@@ -138,6 +138,19 @@
     margin-bottom: 2.5rem;
   }
 
+  .hero-pitch {
+    max-width: 560px;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+    border-left: 2px solid var(--orange);
+    padding-left: 1.5rem;
+    text-align: left;
+  }
+
+  .hero-pitch strong { color: var(--orange); font-weight: 500; }
+
   .hero-desc {
     max-width: 520px;
     font-size: 1.1rem;
@@ -355,6 +368,143 @@
     line-height: 1.7;
   }
 
+  /* ── VAULT ── */
+  .vault-section {
+    padding: 8rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .vault-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .vault-headline span { color: var(--orange); }
+
+  .vault-intro {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #777;
+    max-width: 580px;
+    margin-bottom: 4rem;
+  }
+
+  .vault-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 4rem;
+  }
+
+  .vault-card {
+    background: var(--surface);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .vault-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 0;
+    background: var(--orange);
+    transition: height 0.4s;
+  }
+
+  .vault-card:hover::before { height: 100%; }
+  .vault-card:hover { background: var(--surface2); }
+
+  .vault-icon {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+  }
+
+  .vault-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.8rem;
+    color: var(--text);
+  }
+
+  .vault-body {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── ANTIFORGE ── */
+  .antiforge-section {
+    padding: 8rem 2rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .antiforge-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .antiforge-left h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .antiforge-left h2 span { color: var(--orange); }
+
+  .antiforge-left p {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: #777;
+    margin-bottom: 1rem;
+  }
+
+  .antiforge-right {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    padding: 2rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    position: relative;
+  }
+
+  .antiforge-right::before {
+    content: 'antiforge // live';
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--surface);
+    padding: 0 0.5rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+  }
+
+  .af-line { margin-bottom: 0.4rem; }
+  .af-user { color: var(--orange); }
+  .af-response { color: #aaa; padding-left: 1rem; border-left: 1px solid var(--border); margin-left: 0.5rem; }
+  .af-action { color: #4CAF50; font-size: 0.65rem; margin-top: 0.8rem; }
+
   /* ── ORIGIN ── */
   .origin {
     padding: 8rem 2rem;
@@ -413,11 +563,17 @@
   footer {
     padding: 3rem 2rem;
     border-top: 1px solid var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
     gap: 1rem;
   }
@@ -426,6 +582,22 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5rem;
     letter-spacing: 0.05em;
+  }
+
+  .footer-email {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .footer-email:hover {
+    border-color: var(--orange);
+    color: var(--text);
   }
 
   .footer-note {
@@ -450,9 +622,11 @@
   .delay-2 { animation-delay: 0.4s; }
   .delay-3 { animation-delay: 0.6s; }
   .delay-4 { animation-delay: 0.8s; }
+  .delay-5 { animation-delay: 1s; }
 
   @media (max-width: 640px) {
-    .threat-grid, .pillars-grid { grid-template-columns: 1fr; }
+    .threat-grid, .pillars-grid, .vault-grid { grid-template-columns: 1fr; }
+    .antiforge-inner { grid-template-columns: 1fr; gap: 3rem; }
     footer { flex-direction: column; text-align: center; }
   }
 </style>
@@ -473,15 +647,16 @@
   <h1 class="hero-title fade-in delay-2">anti-anti</h1>
   <p class="hero-sub fade-in delay-2">a fortress for intellectual property</p>
 
-  <p class="hero-desc fade-in delay-3">
-    AI should never be able to <strong>steal, scrape, or erase</strong>
-    what an artist builds. anti-anti is a local-first sovereign platform
-    that keeps your work yours — permanently.
+  <p class="hero-pitch fade-in delay-3">
+    It's a local-first AI development environment that runs entirely on your own hardware.
+    You talk to it, it finds tools, builds features, and manages a team of AI agents.
+    Everything you create is protected by a Vault — <strong>encrypted watermarks, signed export logs,
+    and a permission layer</strong> that means nothing leaves without you knowing exactly where it went.
   </p>
 
   <div class="status-bar fade-in delay-4">
     <div class="status-dot"></div>
-    sovereign shield active — v0.8
+    sovereign shield active — v0.9.2
   </div>
 </section>
 
@@ -498,7 +673,7 @@
     <div class="threat-card">
       <div class="threat-num">THREAT 01</div>
       <div class="threat-title">Unwanted Training & Scraping</div>
-      <div class="threat-body">Models are trained on copyrighted work without consent. Your catalog, your lyrics, your sound — silently consumed as fuel for someone else's system. U.S. copyright guidance now flags this as potentially infringing. It keeps happening anyway.</div>
+      <div class="threat-body">Models are trained on copyrighted work without consent. Your catalog, your voice, your sound — silently consumed as fuel for someone else's system. U.S. copyright guidance now flags this as potentially infringing. It keeps happening anyway.</div>
     </div>
     <div class="threat-card">
       <div class="threat-num">THREAT 02</div>
@@ -527,12 +702,12 @@
       <div class="pillar">
         <div class="pillar-num">PILLAR 01</div>
         <div class="pillar-name">Sovereign Archive</div>
-        <div class="pillar-desc">Masters, stems, lyrics, and artwork live locally — snapshotted and versioned on your own hardware. No external AI or cloud platform can touch, delete, or train on them without your explicit approval. Ever.</div>
+        <div class="pillar-desc">Masters, stems, and artwork live locally — snapshotted and versioned on your own hardware. No external AI or cloud platform can touch, delete, or train on them without your explicit approval. Ever.</div>
       </div>
       <div class="pillar">
         <div class="pillar-num">PILLAR 02</div>
         <div class="pillar-name">Front-Door Policy Engine</div>
-        <div class="pillar-desc">Anything leaving the system — lyrics for analysis, reference audio, cover art — passes through antiforge first. It tags, watermarks, or strips sensitive pieces according to rules you set. Nothing exits unguarded.</div>
+        <div class="pillar-desc">Anything leaving the system passes through antiforge first. It tags, watermarks, or strips sensitive pieces according to rules you set. Nothing exits unguarded.</div>
       </div>
       <div class="pillar">
         <div class="pillar-num">PILLAR 03</div>
@@ -543,12 +718,64 @@
   </div>
 </section>
 
+<!-- VAULT -->
+<section class="vault-section">
+  <div class="section-label">the vault</div>
+  <h2 class="vault-headline">your IP.<br><span>locked down.</span></h2>
+  <p class="vault-intro">
+    Six cloud platforms charge monthly fees to protect what you already own.
+    Vault does it locally — no upload, no subscription, no platform in the middle.
+  </p>
+
+  <div class="vault-grid">
+    <div class="vault-card">
+      <div class="vault-icon">VAULT // 01</div>
+      <div class="vault-title">Trusted Proof Bundle</div>
+      <div class="vault-body">On every export, a tamper-evident ZIP is generated: SHA-256 file hash, provenance excerpt, and a signed README. Labels and lawyers can verify ownership without running a2 or touching your vault.</div>
+    </div>
+    <div class="vault-card">
+      <div class="vault-icon">VAULT // 02</div>
+      <div class="vault-title">Local Watermark Presets</div>
+      <div class="vault-body">Imperceptible markers embedded into exported files entirely offline. Three presets: subtle mastering chain, high-frequency marker, metadata embed. Every watermark logged to the Provenance Ledger with timestamp and parameters.</div>
+    </div>
+    <div class="vault-card">
+      <div class="vault-icon">VAULT // 03</div>
+      <div class="vault-title">Opt-In AI Registry Hooks</div>
+      <div class="vault-body">Declare "Do Not Train" per asset. Flag stored locally alongside the file hash. Exportable as CSV or JSON for SoundExchange and emerging AI registries. No cloud dependency — you submit when and if you choose.</div>
+    </div>
+    <div class="vault-card">
+      <div class="vault-icon">VAULT // 04</div>
+      <div class="vault-title">Forensic Provenance Ledger</div>
+      <div class="vault-body">Append-only signed log of every export: timestamp, destination, file hash, watermark applied, export policy in effect. Stored locally in SQLite. Exportable as PDF for legal use. No entry can be modified or deleted.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ANTIFORGE -->
+<section class="antiforge-section">
+  <div class="antiforge-inner">
+    <div class="antiforge-left">
+      <div class="section-label">the interface</div>
+      <h2>meet<br><span>antiforge</span></h2>
+      <p>antiforge is the conversational layer of a2. You ask a question, it searches the web for the right tool, drafts a build plan, and waits for your approval before the agents touch anything.</p>
+      <p>It knows what's already been built, what's protected, and what requires your sign-off. It doesn't act — it proposes. You decide.</p>
+    </div>
+    <div class="antiforge-right">
+      <div class="af-line"><span class="af-user">you —</span> what's the best tool to detect BPM from an audio file?</div>
+      <div class="af-line af-response">That's Librosa — Python audio analysis library, runs locally, no API needed. librosa.beat.beat_track() is the call. Want me to draft a Build Brief?</div>
+      <div class="af-line" style="margin-top:1.2rem"><span class="af-user">you —</span> yes</div>
+      <div class="af-line af-response">BUILD BRIEF drafted. Waiting for approval before anything touches the agent pipeline.</div>
+      <div class="af-action">▸ approved — sending to Architect</div>
+    </div>
+  </div>
+</section>
+
 <!-- ORIGIN -->
 <section class="origin">
   <div class="section-label">origin</div>
   <h2>built from <span>the ashes</span></h2>
-  <p>A third-party AI builder updated silently and wiped the project file for Lyrical — a full creative suite months in the making. No warning. No backup. No recourse.</p>
-  <p>The work survived. The tool was gone. anti-anti is the answer — built by one artist, with no coding background, because the fortress that should have existed didn't.</p>
+  <p>A third-party AI builder updated silently and wiped a creative application months in the making. No warning. No backup. No recourse.</p>
+  <p>The work survived. The tool was gone. anti-anti is the answer — built by one creator, with no coding background, because the fortress that should have existed didn't.</p>
   <p>This is the proof of concept. If it protects one catalog, it can protect any catalog.</p>
 </section>
 
@@ -567,9 +794,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">anti-anti</div>
-  <div class="footer-note">agentic shield — sovereign fortress — v0.8 — 2026</div>
+  <div class="footer-top">
+    <div class="footer-brand">anti-anti</div>
+    <a href="mailto:hello@anti-anti-ai.com" class="footer-email">
+  hello@anti-anti-ai.com
+  </a>
+ </div>
 </footer>
-
-</body>
-</html>
